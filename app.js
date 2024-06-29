@@ -26,3 +26,8 @@ function handleError(error) {
     const container = document.getElementById('product-container');
     container.innerHTML = `<p>Error: ${error.message}. Try refreshing the page.</p>`;
 }
+
+function displayLoading() {
+    const container = document.getElementById('product-container');
+    container.innerHTML = '<p>Loading products...</p>';
+}
