@@ -1,0 +1,11 @@
+#product-container div{
+    transition: transform 0.3s ease;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#product-container div:hover {
+    transform: scale(1.05);
+}
