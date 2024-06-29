@@ -21,3 +21,8 @@ function displayProducts(products) {
 }
 
 fetchProducts();
+
+function handleError(error) {
+    const container = document.getElementById('product-container');
+    container.innerHTML = `<p>Error: ${error.message}. Try refreshing the page.</p>`;
+}
