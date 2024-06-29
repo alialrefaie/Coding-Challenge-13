@@ -1,3 +1,4 @@
+// U72955273
 async function fetchProducts() {
     try {
         const response = await fetch('https://course-api.com/react-store-products');
