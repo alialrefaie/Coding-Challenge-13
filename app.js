@@ -1,31 +1,25 @@
 // U72955273
+let currentIndex = 0;
+let products = [];
+
 async function fetchProducts() {
+    displayLoading();
     try {
         const response = await fetch('https://course-api.com/react-store-products');
         if (!response.ok) throw new Error('Failed to fetch products');
-        const products = await response.json();
-        displayProducts(products);
+        products = await response.json();
+        if (products.length > 0) {
+            showProduct();
+        } else {
+            displayError(new Error("No products found"));
+        }
     } catch (error) {
-        console.error("Failed to fetch products:", error);
+        displayError(error);
     }
 }
 
-function displayProducts(products) {
-    const container = document.getElementById('product-container');
-    container.innerHTML = products.map(product => `
-        <div>
-            <h3>${product.name}</h3>
-            <p>$${product.price / 100}</p>
-            <p>${product.description}</p>
-        </div>
-    `).join('');
-}
-
-fetchProducts();
-
-function handleError(error) {
-    const container = document.getElementById('product-container');
-    container.innerHTML = `<p>Error: ${error.message}. Try refreshing the page.</p>`;
+function displayProducts() {
+    showProduct();  // Shows the product at currentIndex
 }
 
 function displayLoading() {
@@ -33,8 +27,10 @@ function displayLoading() {
     container.innerHTML = '<p>Loading products...</p>';
 }
 
-let currentIndex = 0;
-let products = [];
+function displayError(error) {
+    const container = document.getElementById('product-container');
+    container.innerHTML = `<p>Error: ${error.message}. Please try again later.</p>`;
+}
 
 function showProduct() {
     const product = products[currentIndex];
@@ -57,3 +53,5 @@ document.getElementById('prev-btn').addEventListener('click', () => {
     currentIndex = (currentIndex - 1 + products.length) % products.length;
     showProduct();
 });
+
+fetchProducts();

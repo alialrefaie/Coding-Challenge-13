@@ -1,4 +1,4 @@
-#product-container div{
+#product-container div {
     transition: transform 0.3s ease;
     padding: 10px;
     margin: 10px;
@@ -8,4 +8,14 @@
 
 #product-container div:hover {
     transform: scale(1.05);
+}
+
+button {
+    padding: 5px 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.8;
 }
